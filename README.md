@@ -30,7 +30,10 @@ L'extension se lance seulement sur les pages `projet-voltaire.fr`.
 ## Fichiers principaux
 
 - `manifest.json` : configuration de l'extension Chrome ;
-- `content.js` : script injecté sur Projet Voltaire, c'est lui qui observe les exercices et clique ;
+- `content.js` : point d'entrée du script injecté, avec l'observer et le dispatch ;
+- `utils.js` : helpers de texte, DOM, clics simulés et constantes partagées ;
+- `storage.js` : lecture/écriture de la mémoire des réponses et des réglages ;
+- `handlers-*.js` : logique par type d'exercice ou navigation ;
 - `popup.html` : interface du popup ;
 - `popup.js` : réglages, export/import et nettoyage de la mémoire ;
 - `icons/` : icône de l'extension ;
@@ -52,4 +55,3 @@ Le popup permet de modifier le comportement sans toucher au code :
 Projet personnel, pas publié sur le Chrome Web Store.
 
 Le fonctionnement dépend beaucoup de la structure HTML de Projet Voltaire. Si le site change ses classes, ses boutons ou ses couleurs, certaines détections peuvent casser.
-

@@ -1,6 +1,7 @@
 function refresh() {
-  chrome.storage.local.get(['arouet_count', 'arouet_auto', 'arouet_learn', 'arouet_autoNext', 'arouet_random', 'arouet_delays', 'arouet_nextDelay', 'arouet_debounceDelay'], (data) => {
+  chrome.storage.local.get(['arouet_count', 'arouet_enabled', 'arouet_auto', 'arouet_learn', 'arouet_autoNext', 'arouet_random', 'arouet_delays', 'arouet_nextDelay', 'arouet_debounceDelay'], (data) => {
     document.getElementById('count').textContent = data.arouet_count ?? 0;
+    document.getElementById('toggle-enabled').checked = data.arouet_enabled !== false;
     document.getElementById('toggle-auto').checked = data.arouet_auto !== false;
     document.getElementById('toggle-learn').checked = data.arouet_learn !== false;
     document.getElementById('toggle-auto-next').checked = data.arouet_autoNext === true;
@@ -10,11 +11,14 @@ function refresh() {
     document.getElementById('delay-min').value = delays.min;
     document.getElementById('delay-max').value = delays.max;
     
-    document.getElementById('next-delay').value = data.arouet_nextDelay ?? 1500;
+    document.getElementById('next-delay').value = data.arouet_nextDelay ?? 400;
     document.getElementById('debounce-delay').value = data.arouet_debounceDelay ?? 120;
   });
 }
 
+document.getElementById('toggle-enabled').addEventListener('change', e => {
+  chrome.storage.local.set({ arouet_enabled: e.target.checked });
+});
 document.getElementById('toggle-auto').addEventListener('change', e => {
   chrome.storage.local.set({ arouet_auto: e.target.checked });
 });
