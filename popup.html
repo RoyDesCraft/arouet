@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Arouet</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 300px;
+      font-family: Montserrat, sans-serif;
+      background: #fff;
+      color: rgb(22, 27, 39);
+    }
+
+    .header {
+      background: #f2fad1;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(22,27,39,0.08);
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(22,27,39,0.12);
+    }
+
+    .logo-icon svg { width: 22px; height: 22px; }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: rgb(22, 27, 39);
+      line-height: 1;
+    }
+
+    .logo-sub {
+      font-size: 10px;
+      color: rgba(22, 27, 39, 0.5);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .body { padding: 14px 16px; background: #f2fad1; }
+
+    .stat-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 4px rgba(22,27,39,0.07);
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: rgba(22,27,39,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      font-weight: 700;
+    }
+
+    .stat-value {
+      font-size: 36px;
+      font-weight: 700;
+      color: rgb(22, 27, 39);
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .stat-icon {
+      font-size: 28px;
+      opacity: 0.8;
+    }
+
+    .section {
+      background: #fff;
+      border-radius: 14px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(22,27,39,0.07);
+    }
+
+    .section-title {
+      font-size: 14px;
+      font: Montserrat-SemiBold;
+      font-weight: 700;
+      color: rgba(22, 27, 39);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 10px 14px 8px;
+      border-bottom: 1px solid rgba(22,27,39,0.05);
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(22,27,39,0.05);
+    }
+
+    .toggle-row:last-child { border-bottom: none; }
+
+    .toggle-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgb(22, 27, 39);
+    }
+
+    .toggle-sub {
+      font-size: 11px;
+      font: Montserrat-Regular;
+      color: rgba(22, 27, 39);
+      margin-top: 1px;
+      font-weight: 400;
+    }
+
+    .switch {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .switch input { display: none; }
+
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: rgba(22,27,39,0.12);
+      border-radius: 22px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .slider:before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      left: 3px;
+      top: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    input:checked + .slider { background: rgb(254, 174, 6); }
+    input:checked + .slider:before { transform: translateX(18px); background: #fff; }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(22,27,39,0.05);
+    }
+
+    .input-row:last-child { border-bottom: none; }
+
+    .input-group { flex: 1; }
+
+    .input-group label {
+      font-size: 10px;
+      font: Montserrat-Regular;
+      color: rgba(22, 27, 39);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 6px 8px;
+      background: #F0F4F1;
+      border: 1.5px solid transparent;
+      border-radius: 8px;
+      color: rgb(22, 27, 39);
+      font-size: 13px;
+      font-family: Montserrat, sans-serif;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .input-group input:focus { border-color: #7ac110; }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 10px 6px;
+      border-radius: 54px;
+      font-size: 11px;
+      font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      letter-spacing: 0px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+      background: rgb(190, 237, 41);
+      color: rgb(22, 27, 39);
+      letter-spacing: 0.3px;
+    }
+
+    .btn:active { background: rgb(175, 220, 35); }
+
+    .btn-danger {
+      width: 100%;
+      padding: 9px;
+      background: #fff;
+      border: 1.5px solid rgba(22,27,39,0.1);
+      border-radius: 10px;
+      color: rgba(22,27,39,0.4);
+      font-size: 11px;
+      font-weight: 600;
+      font-family: Montserrat, sans-serif;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-danger:active {
+      background: #fff0f0;
+      color: #c0392b;
+      border-color: #c0392b;
+    }
+
+    .footer {
+      padding: 8px 16px 12px;
+      background: #f2fad1;
+      font-size: 9px;
+      color: rgba(22,27,39,0.25);
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-icon">
+      <img src="icons/icon_vectoriel.png" width="30" height="30" style="border-radius:50%;">
+    </div>
+    <div>
+      <div class="logo-text">Arouet</div>
+      <div class="logo-sub">Projet Voltaire - réponses automatiques</div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="stat-card">
+      <div>
+        <div class="stat-label">Questions mémorisées</div>
+        <div class="stat-value" id="count">—</div>
+      </div>
+      <div class="logo-icon" style="font-size: 40px; line-height: 1;">
+        ⊛
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Comportement</div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">Auto-réponse</div>
+          <div class="toggle-sub">Clique automatiquement si connu</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="toggle-auto" checked><span class="slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">Apprentissage</div>
+          <div class="toggle-sub">Mémorise les nouvelles réponses</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="toggle-learn" checked><span class="slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">Auto-suivant</div>
+          <div class="toggle-sub">Passe à la question suivante automatiquement</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="toggle-auto-next"><span class="slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">Deviner aléatoire</div>
+          <div class="toggle-sub">Tente une réponse si rien n'est connu</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="toggle-random"><span class="slider"></span></label>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Délais (ms)</div>
+      <div class="input-row">
+        <div class="input-group">
+          <label>Réponse min</label>
+          <input type="number" id="delay-min" min="0">
+        </div>
+        <div class="input-group">
+          <label>Réponse max</label>
+          <input type="number" id="delay-max" min="0">
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <label>Avant suivant</label>
+          <input type="number" id="next-delay" min="0">
+        </div>
+        <div class="input-group">
+          <label>Debounce</label>
+          <input type="number" id="debounce-delay" min="0">
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btn-export">EXPORTER   <span style="font-size:18px; line-height:1;">🡅</span></button>
+      <button class="btn" id="btn-import">IMPORTER   <span style="font-size:18px; line-height:1;">🡇</span></button>
+    </div>
+
+    <button class="btn-danger" id="btn-clear">🗑️ Effacer toute la mémoire</button>
+
+  </div>
+
+  <div class="footer">Version 1.3 - usage personnel uniquement</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
