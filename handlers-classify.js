@@ -179,10 +179,8 @@
       const key = Arouet.questionToKey(questionKey);
       const isNew = !db[key];
 
-      // saveAnswer
       db[key] = mapping;
 
-      // saveClassifyItems
       if (columnKey) {
         Object.entries(mapping).forEach(([itemText, columnIndex]) => {
           const label = labels[columnIndex];
